@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import { isAuthenticated } from './services/userServices'
 
 import './App.css';
 
@@ -9,18 +10,28 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Profile from './components/Profile'
 
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => (
+    isAuthenticated() ? (
+      <Component {...props} />
+    ) : (
+      <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+    )
+  )} />
+)
+
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="App">
           <Navbar />
-          <Route exact path="/" component={Landing} />
-          <div className="container">
+          <Switch>
+            <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/profile" component={Profile} />
-          </div>
+            <PrivateRoute exact path="/profile" component={Profile} />
+          </Switch>
         </div>
       </Router>
     );

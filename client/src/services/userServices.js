@@ -42,3 +42,5 @@ export const getUser = (token) => {
       return err
     })
 }
+
+export const isAuthenticated = () => !!localStorage.getItem('userToken')
