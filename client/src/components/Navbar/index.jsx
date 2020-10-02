@@ -23,6 +23,9 @@ class Navbar extends Component {
     const userLink = (
       <ul className="navbar-nav">
         <li className="nav-item">
+          <Link to="/posts" className="nav-link">Posts</Link>
+        </li>
+        <li className="nav-item">
           <Link to="/profile" className="nav-link">Profile</Link>
         </li>
         <li className="nav-item">

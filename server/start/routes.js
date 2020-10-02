@@ -7,3 +7,5 @@ const Route = use('Route')
 Route.post('/register', 'UserController.register')
 Route.post('/login', 'UserController.login')
 Route.get('/user/profile', 'UserController.show').middleware(['auth'])
+
+Route.resource('posts', 'PostController').apiOnly().middleware(['auth'])

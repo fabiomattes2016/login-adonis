@@ -9,6 +9,7 @@ import Landing from './components/Landing'
 import Login from './components/Login'
 import Register from './components/Register'
 import Profile from './components/Profile'
+import Post from './components/Post'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
@@ -31,6 +32,7 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <PrivateRoute exact path="/profile" component={Profile} />
+            <PrivateRoute exact path="/posts" component={Post} />
           </Switch>
         </div>
       </Router>
